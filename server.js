@@ -24,7 +24,7 @@ app.get("/hello", (req, res) => {
 // Health check endpoint
 app.get("/health", async (req, res) => {
   console.log("DATABASE_URL", process?.env?.DATABASE_URL);
-
+  console.log("process", process?.env);
   try {
     // Check database connection
     await prisma.$queryRaw`SELECT 1`;
