@@ -24,7 +24,6 @@ app.get("/hello", (req, res) => {
 // Health check endpoint
 app.get("/health", async (req, res) => {
   console.log("DATABASE_URL", process?.env?.DATABASE_URL);
-  console.log("Postgres.DATABASE_URL", Postgres?.DATABASE_URL);
 
   try {
     // Check database connection
