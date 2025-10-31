@@ -23,6 +23,7 @@ app.get("/hello", (req, res) => {
 
 // Health check endpoint
 app.get("/health", async (req, res) => {
+  console.log("Health check", process.env.DATABASE_URL);
   try {
     // Check database connection
     await prisma.$queryRaw`SELECT 1`;
@@ -30,12 +31,14 @@ app.get("/health", async (req, res) => {
       status: "ok",
       timestamp: new Date().toISOString(),
       database: "connected",
+      databaseUrl: process.env.DATABASE_URL,
     });
   } catch (error) {
     res.status(503).json({
       status: "error",
       timestamp: new Date().toISOString(),
       database: "disconnected",
+      databaseUrl: process.env.DATABASE_URL,
       error: error.message,
     });
   }
